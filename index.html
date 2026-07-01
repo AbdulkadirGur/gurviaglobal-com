@@ -3,162 +3,520 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gurvía Global — Home & Kitchen | Lifestyle Products</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Gurvía Global LLC — Home & Kitchen | Lifestyle Products</title>
+<meta name="description" content="Gurvía Global LLC is a US-based authorized Amazon seller specializing in Home & Kitchen and Lifestyle products.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --ink:#1a1a2e;
-  --ink-mid:#2d3561;
-  --cream:#faf8f5;
-  --warm:#f0ebe3;
+  --ink:#0d0d0d;
+  --cream:#faf8f4;
+  --warm:#f2ece0;
   --teal:#0d9488;
-  --teal-light:#14b8a6;
-  --white:#ffffff;
-  --gray:#64748b;
-  --border:#e8e3db;
+  --teal2:#14b8a6;
+  --gold:#c9a84c;
+  --white:#fff;
+  --gray:#6b7280;
+  --border:rgba(0,0,0,0.08);
 }
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--cream)}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--ink);overflow-x:hidden}
 
+/* CURSOR */
+.cursor{position:fixed;width:12px;height:12px;background:var(--teal);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s,width 0.3s,height 0.3s,opacity 0.3s;mix-blend-mode:difference}
+.cursor-follower{position:fixed;width:40px;height:40px;border:1px solid rgba(13,148,136,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.15s ease}
+
+/* NAV */
 nav{
-  position:fixed;top:0;width:100%;z-index:100;
-  background:rgba(250,248,245,0.96);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-  padding:0 5%;
+  position:fixed;top:0;width:100%;z-index:1000;
+  padding:24px 5%;
   display:flex;align-items:center;justify-content:space-between;
-  height:72px;
+  transition:all 0.4s;
 }
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--ink);text-decoration:none}
-.nav-logo span{color:var(--teal)}
-.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
-.nav-links a{color:var(--gray);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s}
-.nav-links a:hover{color:var(--ink)}
-.nav-cta{background:var(--ink)!important;color:var(--white)!important;padding:9px 22px;border-radius:6px}
+nav.scrolled{
+  background:rgba(13,13,13,0.85);
+  backdrop-filter:blur(20px);
+  padding:16px 5%;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav-logo{
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;color:var(--white);
+  text-decoration:none;letter-spacing:0.02em;
+  position:relative;z-index:2;
+}
+.nav-logo span{color:var(--teal2)}
+.nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center}
+.nav-links a{
+  color:rgba(255,255,255,0.65);text-decoration:none;
+  font-size:0.85rem;font-weight:400;letter-spacing:0.04em;
+  transition:color 0.25s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;
+  width:0;height:1px;background:var(--teal2);
+  transition:width 0.3s;
+}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  background:linear-gradient(135deg,var(--teal),var(--teal2))!important;
+  color:var(--white)!important;
+  padding:10px 24px;border-radius:100px;
+  font-weight:500!important;
+  box-shadow:0 0 20px rgba(13,148,136,0.35);
+  transition:all 0.3s!important;
+}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 0 32px rgba(13,148,136,0.5)!important}
+.nav-cta::after{display:none!important}
 
+/* HERO */
 .hero{
-  min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
-  align-items:center;padding:120px 5% 80px;gap:80px;
-  background:var(--cream);position:relative;overflow:hidden;
+  min-height:100vh;
+  position:relative;
+  display:flex;align-items:center;
+  overflow:hidden;
+  background:var(--ink);
 }
-.hero::before{
-  content:'';position:absolute;right:-200px;top:-200px;
-  width:700px;height:700px;border-radius:50%;
-  background:radial-gradient(circle,rgba(13,148,136,0.06) 0%,transparent 70%);
-}
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(13,148,136,0.08);border:1px solid rgba(13,148,136,0.2);
-  color:var(--teal);padding:5px 14px;border-radius:100px;
-  font-size:0.78rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:28px;
-}
-.hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--teal);border-radius:50%}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,4.5vw,4rem);line-height:1.15;color:var(--ink);margin-bottom:24px}
-.hero h1 em{font-style:italic;color:var(--teal)}
-.hero-sub{color:var(--gray);font-size:1.05rem;line-height:1.8;margin-bottom:40px;max-width:480px}
-.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
-.btn-dark{background:var(--ink);color:var(--white);padding:14px 30px;border-radius:8px;text-decoration:none;font-weight:500;font-size:0.92rem;transition:all 0.2s;border:none;cursor:pointer;display:inline-block}
-.btn-dark:hover{background:var(--ink-mid);transform:translateY(-1px)}
-.btn-ghost{background:transparent;color:var(--ink);padding:14px 30px;border-radius:8px;text-decoration:none;font-weight:500;font-size:0.92rem;border:1.5px solid var(--border);transition:all 0.2s;display:inline-block}
-.btn-ghost:hover{border-color:var(--ink)}
-.hero-trust{display:flex;gap:32px;margin-top:52px;padding-top:36px;border-top:1px solid var(--border)}
-.trust-item{display:flex;align-items:center;gap:10px}
-.trust-dot{width:8px;height:8px;background:var(--teal);border-radius:50%;flex-shrink:0}
-.trust-text{font-size:0.82rem;color:var(--gray);font-weight:500}
-.hero-visual{position:relative;aspect-ratio:1;border-radius:24px;overflow:hidden}
-.hero-img{width:100%;height:100%;object-fit:cover;border-radius:24px}
-.hero-badge{position:absolute;bottom:28px;left:28px;background:var(--white);border-radius:12px;padding:16px 20px;box-shadow:0 8px 32px rgba(0,0,0,0.12);display:flex;align-items:center;gap:14px}
-.badge-icon{width:40px;height:40px;background:rgba(13,148,136,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
-.badge-text strong{display:block;font-size:0.9rem;color:var(--ink)}
-.badge-text span{font-size:0.78rem;color:var(--gray)}
 
-.marquee-wrap{background:var(--ink);padding:20px 0;overflow:hidden;white-space:nowrap}
-.marquee-track{display:inline-flex;gap:48px;animation:marquee 22s linear infinite}
-.marquee-item{color:rgba(255,255,255,0.45);font-size:0.8rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;display:inline-flex;align-items:center;gap:48px}
-.marquee-item::after{content:'✦';color:var(--teal);font-size:0.6rem}
+/* animated gradient bg */
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(13,148,136,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 50%),
+    #0d0d0d;
+}
+
+/* 3D floating cards in hero */
+.hero-scene{
+  position:absolute;right:0;top:0;width:55%;height:100%;
+  perspective:1200px;
+  pointer-events:none;
+}
+.hero-card-wrap{
+  position:absolute;
+  transform-style:preserve-3d;
+  animation:float3d 8s ease-in-out infinite;
+}
+.hero-card-wrap:nth-child(1){top:10%;right:8%;animation-delay:0s}
+.hero-card-wrap:nth-child(2){top:35%;right:25%;animation-delay:-2.5s}
+.hero-card-wrap:nth-child(3){top:58%;right:5%;animation-delay:-5s}
+.hero-card-wrap:nth-child(4){top:20%;right:45%;animation-delay:-1.5s}
+
+@keyframes float3d{
+  0%,100%{transform:translateY(0) rotateX(8deg) rotateY(-12deg)}
+  50%{transform:translateY(-20px) rotateX(12deg) rotateY(-8deg)}
+}
+
+.hero-card{
+  width:200px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;
+  padding:20px;
+  backdrop-filter:blur(20px);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.4),
+    0 0 0 1px rgba(255,255,255,0.05),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+  transform-style:preserve-3d;
+}
+.hero-card img{
+  width:100%;aspect-ratio:1;
+  object-fit:cover;border-radius:12px;
+  margin-bottom:14px;
+}
+.hero-card-label{
+  font-size:0.75rem;color:var(--teal2);
+  font-weight:500;letter-spacing:0.06em;
+  text-transform:uppercase;margin-bottom:4px;
+}
+.hero-card-name{
+  font-family:'Playfair Display',serif;
+  font-size:0.9rem;color:var(--white);line-height:1.3;
+}
+.hero-card-price{
+  font-size:0.85rem;color:var(--gold);
+  margin-top:8px;font-weight:500;
+}
+
+/* HERO CONTENT */
+.hero-content{
+  position:relative;z-index:2;
+  padding:0 5%;max-width:640px;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(13,148,136,0.1);
+  border:1px solid rgba(13,148,136,0.25);
+  color:var(--teal2);
+  padding:6px 18px;border-radius:100px;
+  font-size:0.75rem;font-weight:500;
+  letter-spacing:0.08em;text-transform:uppercase;
+  margin-bottom:32px;
+}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--teal2);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,6vw,5.5rem);
+  line-height:1.05;color:var(--white);
+  margin-bottom:28px;
+  letter-spacing:-0.02em;
+}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{
+  color:rgba(255,255,255,0.5);
+  font-size:1.05rem;line-height:1.8;
+  margin-bottom:44px;max-width:460px;
+  font-weight:300;
+}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+.btn-glow{
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  color:var(--white);padding:15px 36px;
+  border-radius:100px;text-decoration:none;
+  font-weight:500;font-size:0.92rem;
+  box-shadow:0 0 30px rgba(13,148,136,0.4),0 8px 20px rgba(0,0,0,0.3);
+  transition:all 0.3s;border:none;cursor:pointer;display:inline-block;
+  letter-spacing:0.02em;
+}
+.btn-glow:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(13,148,136,0.6),0 12px 30px rgba(0,0,0,0.4)}
+.btn-outline-white{
+  background:transparent;color:rgba(255,255,255,0.8);
+  padding:15px 36px;border-radius:100px;
+  text-decoration:none;font-weight:400;font-size:0.92rem;
+  border:1px solid rgba(255,255,255,0.15);
+  transition:all 0.3s;display:inline-block;
+  backdrop-filter:blur(10px);
+}
+.btn-outline-white:hover{border-color:rgba(255,255,255,0.4);color:var(--white)}
+
+.hero-stats{
+  display:flex;gap:40px;margin-top:60px;
+  padding-top:40px;
+  border-top:1px solid rgba(255,255,255,0.07);
+}
+.stat-val{
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem;color:var(--white);
+  display:block;line-height:1;margin-bottom:6px;
+}
+.stat-label{font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:0.06em;text-transform:uppercase}
+
+/* MARQUEE */
+.marquee-wrap{
+  background:rgba(255,255,255,0.03);
+  border-top:1px solid rgba(255,255,255,0.05);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  padding:18px 0;overflow:hidden;white-space:nowrap;
+}
+.marquee-track{display:inline-flex;gap:48px;animation:marquee 25s linear infinite}
+.marquee-item{
+  color:rgba(255,255,255,0.3);font-size:0.75rem;
+  font-weight:400;letter-spacing:0.1em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:48px;
+}
+.marquee-item::after{content:'◆';color:var(--teal);font-size:0.5rem}
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-section{padding:100px 5%}
-.section-eyebrow{font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
-.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3vw,2.8rem);color:var(--ink);line-height:1.2;margin-bottom:16px}
-.section-sub{color:var(--gray);font-size:1rem;line-height:1.75;max-width:520px}
-
-.products{background:var(--white)}
-.products-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px}
-.products-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:2px;border-radius:20px;overflow:hidden;border:1px solid var(--border);
+/* PRODUCTS */
+.products{background:var(--cream);padding:120px 5%}
+.products-header{
+  display:flex;justify-content:space-between;
+  align-items:flex-end;margin-bottom:72px;
 }
-.product-card{background:var(--white);position:relative;overflow:hidden;transition:all 0.35s}
-.product-card:hover .product-img-wrap img{transform:scale(1.04)}
-.product-card:hover .product-overlay{opacity:1}
-.product-img-wrap{position:relative;aspect-ratio:1;overflow:hidden;background:var(--warm)}
-.product-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease}
-.product-tag{position:absolute;top:16px;left:16px;background:var(--white);color:var(--ink);font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:4px 10px;border-radius:100px}
-.product-overlay{position:absolute;inset:0;background:rgba(26,26,46,0.55);opacity:0;transition:opacity 0.3s;display:flex;align-items:center;justify-content:center}
-.overlay-badge{background:var(--teal);color:var(--white);font-size:0.8rem;font-weight:600;padding:10px 24px;border-radius:100px;letter-spacing:0.04em}
-.product-body{padding:22px 24px 24px;border-top:1px solid var(--border)}
-.product-meta{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
-.product-name{font-family:'Playfair Display',serif;font-size:0.98rem;color:var(--ink);line-height:1.4;flex:1;margin-right:12px}
-.product-price{font-size:1rem;font-weight:600;color:var(--teal);white-space:nowrap}
-.product-desc{font-size:0.82rem;color:var(--gray);line-height:1.6}
-.product-card.featured{grid-row:span 2}
-.product-card.featured .product-img-wrap{aspect-ratio:unset;height:calc(100% - 108px);min-height:400px}
+.label-small{
+  font-size:0.72rem;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:14px;
+}
+.title-serif{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,3.5vw,3rem);
+  color:var(--ink);line-height:1.2;
+}
 
-.why-us{background:var(--cream)}
-.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:64px}
-.why-img{width:100%;border-radius:20px;aspect-ratio:4/5;object-fit:cover}
-.why-features{display:flex;flex-direction:column;gap:32px}
-.why-feature{display:flex;gap:20px;align-items:flex-start;padding-bottom:32px;border-bottom:1px solid var(--border)}
-.why-feature:last-child{border-bottom:none;padding-bottom:0}
-.why-num{font-family:'Playfair Display',serif;font-size:2rem;color:rgba(13,148,136,0.2);font-weight:700;flex-shrink:0;line-height:1;width:40px}
-.why-feature h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--ink);margin-bottom:6px}
-.why-feature p{font-size:0.9rem;color:var(--gray);line-height:1.7}
+/* 3D product grid */
+.products-grid{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:20px;
+}
+.prod{
+  position:relative;overflow:hidden;
+  border-radius:24px;cursor:pointer;
+  transition:transform 0.5s cubic-bezier(0.23,1,0.32,1);
+  transform-style:preserve-3d;
+}
+.prod:hover{transform:translateY(-8px) scale(1.02)}
+.prod.tall{grid-row:span 2}
+.prod-img{
+  width:100%;height:100%;min-height:320px;
+  object-fit:cover;
+  transition:transform 0.7s cubic-bezier(0.23,1,0.32,1);
+  display:block;
+}
+.prod.tall .prod-img{min-height:100%}
+.prod:hover .prod-img{transform:scale(1.06)}
+.prod-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.2) 50%, transparent 100%);
+}
+.prod-info{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:28px;
+  transform:translateY(8px);
+  transition:transform 0.4s;
+}
+.prod:hover .prod-info{transform:translateY(0)}
+.prod-tag{
+  display:inline-block;
+  background:rgba(13,148,136,0.9);
+  color:var(--white);font-size:0.65rem;
+  font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  padding:4px 10px;border-radius:100px;margin-bottom:10px;
+}
+.prod-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;color:var(--white);
+  line-height:1.3;margin-bottom:8px;
+}
+.prod-price{
+  font-size:1rem;font-weight:500;
+  color:var(--gold);
+}
 
-.categories{background:var(--ink)}
-.categories .section-title{color:var(--white)}
-.categories .section-sub{color:rgba(255,255,255,0.55)}
-.categories .section-eyebrow{color:var(--teal-light)}
-.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px}
-.cat-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:32px 24px;text-align:center;transition:all 0.25s}
-.cat-card:hover{background:rgba(13,148,136,0.12);border-color:rgba(13,148,136,0.35);transform:translateY(-3px)}
-.cat-icon{font-size:2.2rem;margin-bottom:16px;display:block}
-.cat-name{font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);margin-bottom:6px}
-.cat-desc{font-size:0.82rem;color:rgba(255,255,255,0.45);line-height:1.6}
+/* WHY */
+.why{
+  background:var(--ink);padding:120px 5%;
+  position:relative;overflow:hidden;
+}
+.why::before{
+  content:'';position:absolute;
+  top:-300px;right:-200px;
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(13,148,136,0.08) 0%,transparent 70%);
+}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.why-visual{position:relative}
+.why-img-main{
+  width:100%;aspect-ratio:4/5;
+  object-fit:cover;border-radius:28px;
+  box-shadow:0 40px 80px rgba(0,0,0,0.5);
+}
+.why-img-float{
+  position:absolute;bottom:-32px;right:-32px;
+  width:55%;aspect-ratio:1;
+  object-fit:cover;border-radius:20px;
+  border:4px solid var(--ink);
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+.why-badge{
+  position:absolute;top:32px;left:-20px;
+  background:rgba(13,13,13,0.8);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px;padding:16px 20px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.4);
+}
+.why-badge-icon{font-size:1.4rem;margin-bottom:4px}
+.why-badge-val{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--white);display:block}
+.why-badge-label{font-size:0.72rem;color:rgba(255,255,255,0.4);letter-spacing:0.05em}
+.why-content .label-small{color:var(--teal2)}
+.why-content .title-serif{color:var(--white);margin-bottom:16px}
+.why-sub{color:rgba(255,255,255,0.45);font-size:0.95rem;line-height:1.8;margin-bottom:48px;font-weight:300}
+.why-items{display:flex;flex-direction:column;gap:0}
+.why-item{
+  display:flex;gap:20px;align-items:flex-start;
+  padding:24px 0;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  transition:all 0.3s;
+}
+.why-item:first-child{padding-top:0}
+.why-item:last-child{border-bottom:none}
+.why-item:hover .why-item-icon{background:rgba(13,148,136,0.25);transform:scale(1.1)}
+.why-item-icon{
+  width:44px;height:44px;flex-shrink:0;
+  background:rgba(13,148,136,0.1);
+  border:1px solid rgba(13,148,136,0.2);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;transition:all 0.3s;
+}
+.why-item h3{font-size:0.95rem;color:var(--white);margin-bottom:4px;font-weight:500}
+.why-item p{font-size:0.85rem;color:rgba(255,255,255,0.4);line-height:1.7}
 
-.b2b-cta{background:var(--warm);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.b2b-points{display:flex;flex-direction:column;gap:14px;margin-top:36px}
-.b2b-point{display:flex;gap:12px;align-items:center;font-size:0.92rem;color:var(--ink)}
-.b2b-point::before{content:'';width:6px;height:6px;background:var(--teal);border-radius:50%;flex-shrink:0}
-.b2b-form-wrap{background:var(--white);border-radius:20px;padding:40px;box-shadow:0 4px 24px rgba(0,0,0,0.06)}
-.b2b-form-wrap h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--ink);margin-bottom:24px}
-.form-group{margin-bottom:16px}
-.form-group input,.form-group textarea,.form-group select{width:100%;background:var(--cream);border:1.5px solid var(--border);border-radius:8px;padding:12px 16px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--ink);outline:none;transition:border-color 0.2s}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--teal)}
-.form-group textarea{min-height:100px;resize:vertical}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+/* CATEGORIES */
+.categories{background:var(--cream);padding:120px 5%}
+.cat-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;margin-top:64px;
+}
+.cat{
+  position:relative;overflow:hidden;
+  border-radius:20px;aspect-ratio:4/3;
+  cursor:pointer;
+  transition:transform 0.4s cubic-bezier(0.23,1,0.32,1);
+}
+.cat:hover{transform:scale(1.03)}
+.cat:hover img{transform:scale(1.08)}
+.cat img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.6s cubic-bezier(0.23,1,0.32,1);
+}
+.cat-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(13,13,13,0.75) 0%,transparent 60%);
+}
+.cat-label{
+  position:absolute;bottom:24px;left:24px;right:24px;
+}
+.cat-icon-sm{font-size:1.4rem;margin-bottom:6px;display:block}
+.cat-name-lg{
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;color:var(--white);
+  margin-bottom:4px;
+}
+.cat-count{font-size:0.78rem;color:rgba(255,255,255,0.5)}
 
-footer{background:var(--ink);padding:64px 5% 32px}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.08)}
-.footer-brand p{color:rgba(255,255,255,0.45);font-size:0.88rem;line-height:1.7;margin-top:16px;max-width:280px}
-.footer-col h4{color:var(--white);font-size:0.85rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:20px}
+/* B2B */
+.b2b{
+  background:var(--ink);padding:120px 5%;
+  position:relative;overflow:hidden;
+}
+.b2b::before{
+  content:'';position:absolute;
+  bottom:-400px;left:-300px;
+  width:800px;height:800px;border-radius:50%;
+  background:radial-gradient(circle,rgba(13,148,136,0.06) 0%,transparent 70%);
+}
+.b2b-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.b2b-content .label-small{color:var(--teal2)}
+.b2b-content .title-serif{color:var(--white);margin-bottom:20px}
+.b2b-sub{color:rgba(255,255,255,0.4);font-size:0.95rem;line-height:1.8;margin-bottom:40px;font-weight:300}
+.b2b-perks{display:flex;flex-direction:column;gap:16px}
+.b2b-perk{
+  display:flex;gap:14px;align-items:center;
+  font-size:0.9rem;color:rgba(255,255,255,0.65);
+}
+.b2b-perk-dot{
+  width:28px;height:28px;flex-shrink:0;
+  background:rgba(13,148,136,0.15);
+  border:1px solid rgba(13,148,136,0.3);
+  border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:0.65rem;color:var(--teal2);font-weight:700;
+}
+
+/* FORM */
+.b2b-form{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:28px;padding:44px;
+  backdrop-filter:blur(20px);
+  box-shadow:0 40px 80px rgba(0,0,0,0.3);
+}
+.b2b-form h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;color:var(--white);margin-bottom:8px;
+}
+.b2b-form p{color:rgba(255,255,255,0.4);font-size:0.85rem;margin-bottom:28px}
+.b2b-form a{color:var(--teal2)}
+.fgroup{margin-bottom:16px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fgroup input,.fgroup textarea,.fgroup select{
+  width:100%;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;padding:14px 18px;
+  font-family:'DM Sans',sans-serif;
+  font-size:0.9rem;color:var(--white);
+  outline:none;transition:all 0.25s;
+  -webkit-appearance:none;
+}
+.fgroup input::placeholder,.fgroup textarea::placeholder{color:rgba(255,255,255,0.25)}
+.fgroup select option{background:#1a1a2e;color:var(--white)}
+.fgroup input:focus,.fgroup textarea:focus,.fgroup select:focus{
+  border-color:rgba(13,148,136,0.5);
+  background:rgba(13,148,136,0.06);
+  box-shadow:0 0 0 3px rgba(13,148,136,0.1);
+}
+.fgroup textarea{min-height:110px;resize:vertical}
+
+/* CONTACT STRIP */
+.contact-strip{
+  background:rgba(255,255,255,0.02);
+  border-top:1px solid rgba(255,255,255,0.05);
+  padding:48px 5%;
+}
+.contact-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:32px;
+}
+.contact-item{text-align:center}
+.contact-icon{
+  font-size:1.5rem;margin-bottom:12px;display:block;
+}
+.contact-item h4{
+  color:rgba(255,255,255,0.35);
+  font-size:0.7rem;font-weight:600;
+  letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;
+}
+.contact-item a,.contact-item p{
+  color:rgba(255,255,255,0.65);font-size:0.88rem;
+  text-decoration:none;transition:color 0.2s;
+}
+.contact-item a:hover{color:var(--teal2)}
+
+/* FOOTER */
+footer{
+  background:var(--ink);
+  border-top:1px solid rgba(255,255,255,0.04);
+  padding:60px 5% 32px;
+}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:48px;padding-bottom:48px;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);text-decoration:none}
+.footer-logo span{color:var(--teal2)}
+.footer-brand p{color:rgba(255,255,255,0.3);font-size:0.85rem;line-height:1.7;margin-top:16px;max-width:260px}
+.footer-col h4{color:rgba(255,255,255,0.25);font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px}
 .footer-col ul{list-style:none}
-.footer-col ul li{margin-bottom:10px}
-.footer-col ul li a{color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.88rem;transition:color 0.2s}
-.footer-col ul li a:hover{color:var(--teal-light)}
+.footer-col ul li{margin-bottom:12px}
+.footer-col ul li a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:0.88rem;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--teal2)}
 .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px}
-.footer-bottom p{color:rgba(255,255,255,0.3);font-size:0.8rem}
+.footer-bottom p{color:rgba(255,255,255,0.2);font-size:0.78rem}
 
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;padding-top:100px}
-  .hero-visual{display:none}
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.23,1,0.32,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+
+@media(max-width:960px){
+  .hero-scene{display:none}
+  .hero h1{font-size:3rem}
   .products-grid{grid-template-columns:1fr 1fr}
-  .product-card.featured{grid-row:span 1}
-  .product-card.featured .product-img-wrap{min-height:240px;height:240px}
-  .why-grid{grid-template-columns:1fr}
-  .cat-grid{grid-template-columns:repeat(2,1fr)}
-  .b2b-cta{grid-template-columns:1fr}
+  .prod.tall{grid-row:span 1}
+  .why-grid,.b2b-grid{grid-template-columns:1fr}
+  .why-img-float{display:none}
+  .cat-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr 1fr}
   .footer-top{grid-template-columns:1fr 1fr}
   nav .nav-links{display:none}
 }
@@ -166,42 +524,94 @@ footer{background:var(--ink);padding:64px 5% 32px}
 </head>
 <body>
 
-<nav>
-  <a href="#" class="nav-logo">Gurvía <span>Global</span></a>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="follower"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="https://gurviaglobal.com" class="nav-logo">Gurvía <span>Global</span></a>
   <ul class="nav-links">
     <li><a href="#products">Shop</a></li>
-    <li><a href="#why-us">About</a></li>
     <li><a href="#categories">Categories</a></li>
+    <li><a href="#why">About Us</a></li>
     <li><a href="#b2b">B2B Sales</a></li>
     <li><a href="#b2b" class="nav-cta">Partner With Us</a></li>
   </ul>
 </nav>
 
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-eyebrow">US-Based Authorized Seller</div>
-    <h1>Elevate Every<br><em>Room.</em></h1>
-    <p class="hero-sub">Gurvía Global brings carefully curated Home & Kitchen and Lifestyle products to Amazon customers — backed by trusted brands and guaranteed authenticity.</p>
-    <div class="hero-actions">
-      <a href="#products" class="btn-dark">Shop Now</a>
-      <a href="#b2b" class="btn-ghost">Brand Partnerships</a>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+
+  <!-- 3D floating product cards -->
+  <div class="hero-scene">
+    <div class="hero-card-wrap">
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=300&q=80" alt="Cookware">
+        <div class="hero-card-label">Cookware</div>
+        <div class="hero-card-name">Cast Iron Skillet</div>
+        <div class="hero-card-price">$34.99</div>
+      </div>
     </div>
-    <div class="hero-trust">
-      <div class="trust-item"><div class="trust-dot"></div><span class="trust-text">Registered US LLC</span></div>
-      <div class="trust-item"><div class="trust-dot"></div><span class="trust-text">MAP Compliant</span></div>
-      <div class="trust-item"><div class="trust-dot"></div><span class="trust-text">FBA Ready</span></div>
+    <div class="hero-card-wrap">
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?w=300&q=80" alt="Cutlery">
+        <div class="hero-card-label">Cutlery</div>
+        <div class="hero-card-name">Knife Block Set</div>
+        <div class="hero-card-price">$29.99</div>
+      </div>
+    </div>
+    <div class="hero-card-wrap">
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&q=80" alt="Beverages">
+        <div class="hero-card-label">Beverages</div>
+        <div class="hero-card-name">Milk Frother</div>
+        <div class="hero-card-price">$14.99</div>
+      </div>
+    </div>
+    <div class="hero-card-wrap">
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=300&q=80" alt="Storage">
+        <div class="hero-card-label">Storage</div>
+        <div class="hero-card-name">Container Set</div>
+        <div class="hero-card-price">$27.99</div>
+      </div>
     </div>
   </div>
-  <div class="hero-visual">
-    <!-- Generic bright kitchen lifestyle — no brands visible -->
-    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80" alt="Modern home kitchen" class="hero-img">
-    <div class="hero-badge">
-      <div class="badge-icon">🏠</div>
-      <div class="badge-text"><strong>Home & Kitchen</strong><span>Lifestyle Products</span></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">US-Based Authorized Amazon Seller</div>
+    <h1>
+      <span class="line">Elevate</span>
+      <span class="line">Every <em>Room.</em></span>
+    </h1>
+    <p class="hero-sub">Gurvía Global LLC brings carefully curated Home & Kitchen and Lifestyle products to Amazon customers — backed by trusted brands and guaranteed authenticity.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-glow">Shop Now</a>
+      <a href="#b2b" class="btn-outline-white">Brand Partnerships</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-val">FBA</span>
+        <span class="stat-label">Fulfillment Ready</span>
+      </div>
+      <div>
+        <span class="stat-val">MAP</span>
+        <span class="stat-label">Policy Compliant</span>
+      </div>
+      <div>
+        <span class="stat-val">1–2</span>
+        <span class="stat-label">Day Shipping</span>
+      </div>
+      <div>
+        <span class="stat-val">LLC</span>
+        <span class="stat-label">US Registered</span>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- MARQUEE -->
 <div class="marquee-wrap">
   <div class="marquee-track">
     <span class="marquee-item">Home & Kitchen</span>
@@ -210,152 +620,128 @@ footer{background:var(--ink);padding:64px 5% 32px}
     <span class="marquee-item">Amazon FBA</span>
     <span class="marquee-item">MAP Compliant</span>
     <span class="marquee-item">US-Based LLC</span>
-    <span class="marquee-item">Brand Partnerships</span>
+    <span class="marquee-item">Wholesale Buyer</span>
+    <span class="marquee-item">1–2 Day Shipping</span>
     <span class="marquee-item">Home & Kitchen</span>
     <span class="marquee-item">Lifestyle Products</span>
     <span class="marquee-item">Authorized Reseller</span>
     <span class="marquee-item">Amazon FBA</span>
     <span class="marquee-item">MAP Compliant</span>
     <span class="marquee-item">US-Based LLC</span>
-    <span class="marquee-item">Brand Partnerships</span>
+    <span class="marquee-item">Wholesale Buyer</span>
+    <span class="marquee-item">1–2 Day Shipping</span>
   </div>
 </div>
 
+<!-- PRODUCTS -->
 <section class="products" id="products">
-  <div class="products-header">
+  <div class="products-header reveal">
     <div>
-      <div class="section-eyebrow">Our Selection</div>
-      <h2 class="section-title">Featured Products</h2>
+      <div class="label-small">Our Selection</div>
+      <h2 class="title-serif">Featured Products</h2>
     </div>
   </div>
   <div class="products-grid">
-
-    <!-- FEATURED BIG — generic cooking scene, no brand logos -->
-    <div class="product-card featured">
-      <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=700&q=80" alt="Cooking on stovetop">
-        <div class="product-tag">Cookware</div>
-        <div class="product-overlay"><span class="overlay-badge">Home & Kitchen</span></div>
-      </div>
-      <div class="product-body">
-        <div class="product-meta">
-          <div class="product-name">10" Pre-Seasoned Cast Iron Skillet</div>
-          <div class="product-price">$34.99</div>
-        </div>
-        <div class="product-desc">Durable cast iron construction. Pre-seasoned and oven safe up to 500°F. Works on all stovetops including induction.</div>
+    <div class="prod tall reveal">
+      <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=700&q=80" alt="Cooking scene" class="prod-img">
+      <div class="prod-overlay"></div>
+      <div class="prod-info">
+        <div class="prod-tag">Cookware</div>
+        <div class="prod-name">10" Pre-Seasoned Cast Iron Skillet</div>
+        <div class="prod-price">$34.99</div>
       </div>
     </div>
-
-    <!-- Generic wooden cutting board & knife scene -->
-    <div class="product-card">
-      <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?w=500&q=80" alt="Kitchen prep scene">
-        <div class="product-tag">Cutlery</div>
-        <div class="product-overlay"><span class="overlay-badge">Kitchen Essential</span></div>
-      </div>
-      <div class="product-body">
-        <div class="product-meta">
-          <div class="product-name">15-Piece Professional Knife Block Set</div>
-          <div class="product-price">$29.99</div>
-        </div>
-        <div class="product-desc">High-carbon stainless steel blades with ergonomic handles. Full tang construction for balance and control.</div>
+    <div class="prod reveal reveal-delay-1">
+      <img src="https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?w=500&q=80" alt="Kitchen prep" class="prod-img">
+      <div class="prod-overlay"></div>
+      <div class="prod-info">
+        <div class="prod-tag">Cutlery</div>
+        <div class="prod-name">15-Piece Professional Knife Set</div>
+        <div class="prod-price">$29.99</div>
       </div>
     </div>
-
-    <!-- Generic silicone utensils flat lay -->
-    <div class="product-card">
-      <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=500&q=80" alt="Kitchen utensils">
-        <div class="product-tag">Utensils</div>
-        <div class="product-overlay"><span class="overlay-badge">Kitchen Essential</span></div>
-      </div>
-      <div class="product-body">
-        <div class="product-meta">
-          <div class="product-name">6-Piece Silicone Kitchen Utensil Set</div>
-          <div class="product-price">$21.99</div>
-        </div>
-        <div class="product-desc">Heat-resistant silicone heads, BPA-free construction. Safe for non-stick cookware and dishwasher friendly.</div>
+    <div class="prod reveal reveal-delay-2">
+      <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=500&q=80" alt="Utensils" class="prod-img">
+      <div class="prod-overlay"></div>
+      <div class="prod-info">
+        <div class="prod-tag">Utensils</div>
+        <div class="prod-name">6-Piece Silicone Utensil Set</div>
+        <div class="prod-price">$21.99</div>
       </div>
     </div>
-
-    <!-- Generic coffee / beverage scene -->
-    <div class="product-card">
-      <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&q=80" alt="Morning coffee scene">
-        <div class="product-tag">Beverages</div>
-        <div class="product-overlay"><span class="overlay-badge">Top Rated</span></div>
-      </div>
-      <div class="product-body">
-        <div class="product-meta">
-          <div class="product-name">Handheld Electric Milk Frother</div>
-          <div class="product-price">$14.99</div>
-        </div>
-        <div class="product-desc">Create café-quality foam in seconds. Compact, battery-powered, BPA-free and easy to clean.</div>
+    <div class="prod reveal reveal-delay-1">
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&q=80" alt="Coffee" class="prod-img">
+      <div class="prod-overlay"></div>
+      <div class="prod-info">
+        <div class="prod-tag">Beverages</div>
+        <div class="prod-name">Handheld Electric Milk Frother</div>
+        <div class="prod-price">$14.99</div>
       </div>
     </div>
-
-    <!-- Generic pantry / storage scene -->
-    <div class="product-card">
-      <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=500&q=80" alt="Kitchen storage and organisation">
-        <div class="product-tag">Storage</div>
-        <div class="product-overlay"><span class="overlay-badge">Home Essential</span></div>
-      </div>
-      <div class="product-body">
-        <div class="product-meta">
-          <div class="product-name">Stackable Food Storage Container Set</div>
-          <div class="product-price">$27.99</div>
-        </div>
-        <div class="product-desc">Airtight lids keep food fresh longer. Microwave and dishwasher safe. Available in multiple sizes.</div>
+    <div class="prod reveal reveal-delay-2">
+      <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=500&q=80" alt="Storage" class="prod-img">
+      <div class="prod-overlay"></div>
+      <div class="prod-info">
+        <div class="prod-tag">Storage</div>
+        <div class="prod-name">Stackable Food Storage Set</div>
+        <div class="prod-price">$27.99</div>
       </div>
     </div>
-
-    <!-- Generic baking / prep scene -->
-    <div class="product-card">
-      <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=500&q=80" alt="Baking and prep">
-        <div class="product-tag">Prep & Bake</div>
-        <div class="product-overlay"><span class="overlay-badge">Kitchen Essential</span></div>
-      </div>
-      <div class="product-body">
-        <div class="product-meta">
-          <div class="product-name">Stainless Steel Mixing Bowl Set of 3</div>
-          <div class="product-price">$24.99</div>
-        </div>
-        <div class="product-desc">Nesting design saves cabinet space. Non-slip base, dishwasher safe, rust-resistant stainless steel.</div>
+    <div class="prod reveal reveal-delay-3">
+      <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=500&q=80" alt="Baking" class="prod-img">
+      <div class="prod-overlay"></div>
+      <div class="prod-info">
+        <div class="prod-tag">Prep & Bake</div>
+        <div class="prod-name">Stainless Steel Mixing Bowl Set</div>
+        <div class="prod-price">$24.99</div>
       </div>
     </div>
-
   </div>
 </section>
 
-<section class="why-us" id="why-us">
+<!-- WHY -->
+<section class="why" id="why">
   <div class="why-grid">
-    <!-- Generic cozy home lifestyle — no products, no brands -->
-    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=80" alt="Beautiful home interior" class="why-img">
-    <div>
-      <div class="section-eyebrow">Why Gurvía Global</div>
-      <h2 class="section-title">Quality You Can Trust.<br>Service You Can Count On.</h2>
-      <div class="why-features">
-        <div class="why-feature">
-          <div class="why-num">01</div>
+    <div class="why-visual reveal">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=80" alt="Beautiful home" class="why-img-main">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80" alt="Kitchen detail" class="why-img-float">
+      <div class="why-badge">
+        <div class="why-badge-icon">🇺🇸</div>
+        <span class="why-badge-val">US LLC</span>
+        <span class="why-badge-label">Registered Entity</span>
+      </div>
+    </div>
+    <div class="why-content">
+      <div class="label-small reveal">Why Partner With Us</div>
+      <h2 class="title-serif reveal">More Than a Buyer — A Long-Term Growth Partner</h2>
+      <p class="why-sub reveal">We are committed to building long-term relationships grounded in trust, transparency, and shared success.</p>
+      <div class="why-items">
+        <div class="why-item reveal">
+          <div class="why-item-icon">✓</div>
           <div>
-            <h3>Authentic Products Only</h3>
-            <p>Every product we sell is sourced directly from authorized distributors. No counterfeits, no grey market — guaranteed authenticity on every order.</p>
+            <h3>Authorized Amazon Seller</h3>
+            <p>Fully registered US LLC, compliant with Amazon's brand and seller policies.</p>
           </div>
         </div>
-        <div class="why-feature">
-          <div class="why-num">02</div>
+        <div class="why-item reveal reveal-delay-1">
+          <div class="why-item-icon">🛡️</div>
           <div>
-            <h3>Fast US Fulfillment</h3>
-            <p>All orders ship from our US warehouse via Amazon FBA within 1–2 business days. Prime-eligible shipping on all products.</p>
+            <h3>MAP Policy Compliance</h3>
+            <p>We strictly follow Minimum Advertised Price policies to protect your brand value.</p>
           </div>
         </div>
-        <div class="why-feature">
-          <div class="why-num">03</div>
+        <div class="why-item reveal reveal-delay-2">
+          <div class="why-item-icon">📦</div>
           <div>
-            <h3>Dedicated Customer Service</h3>
-            <p>We stand behind every product we sell. Questions? Our team responds within 24 hours, every time.</p>
+            <h3>Direct Wholesale Purchasing</h3>
+            <p>No middlemen — streamlined ordering, faster restocking, competitive pricing.</p>
+          </div>
+        </div>
+        <div class="why-item reveal reveal-delay-3">
+          <div class="why-item-icon">🚚</div>
+          <div>
+            <h3>Fast & Reliable Fulfillment</h3>
+            <p>All orders ship within 1–2 business days via Amazon FBA from our US warehouse.</p>
           </div>
         </div>
       </div>
@@ -363,99 +749,239 @@ footer{background:var(--ink);padding:64px 5% 32px}
   </div>
 </section>
 
+<!-- CATEGORIES -->
 <section class="categories" id="categories">
-  <div class="section-eyebrow">What We Carry</div>
-  <h2 class="section-title">Shop by Category</h2>
-  <p class="section-sub">From everyday kitchen essentials to lifestyle upgrades — we carry products across every room in your home.</p>
+  <div class="label-small reveal">What We Carry</div>
+  <h2 class="title-serif reveal">Shop by Category</h2>
   <div class="cat-grid">
-    <div class="cat-card"><span class="cat-icon">🍳</span><div class="cat-name">Cookware</div><div class="cat-desc">Skillets, pots, pans & bakeware</div></div>
-    <div class="cat-card"><span class="cat-icon">🔪</span><div class="cat-name">Cutlery</div><div class="cat-desc">Knife sets, cutting boards & sharpeners</div></div>
-    <div class="cat-card"><span class="cat-icon">☕</span><div class="cat-name">Beverages</div><div class="cat-desc">Frothers, kettles & coffee accessories</div></div>
-    <div class="cat-card"><span class="cat-icon">🏡</span><div class="cat-name">Home Essentials</div><div class="cat-desc">Storage, organization & décor</div></div>
-  </div>
-</section>
-
-<section class="b2b-cta" id="b2b">
-  <div>
-    <div class="section-eyebrow">Brand Partnerships</div>
-    <h2 class="section-title">Let's Grow Your Brand Together</h2>
-    <p class="section-sub">We work directly with brand owners as authorized resellers on Amazon. No cost to you — we invest in inventory, PPC, and promotions independently.</p>
-    <div class="b2b-points">
-      <div class="b2b-point">Registered US LLC — Amazon policy compliant</div>
-      <div class="b2b-point">MAP policy enforcement on all listings</div>
-      <div class="b2b-point">We invest in PPC & promotions independently</div>
-      <div class="b2b-point">Transparent reporting & long-term partnership</div>
-      <div class="b2b-point">FBA-ready with established logistics</div>
+    <div class="cat reveal">
+      <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=600&q=80" alt="Cookware">
+      <div class="cat-overlay"></div>
+      <div class="cat-label">
+        <span class="cat-icon-sm">🍳</span>
+        <div class="cat-name-lg">Cookware & Kitchen</div>
+        <div class="cat-count">Pots, pans, knives & essentials</div>
+      </div>
+    </div>
+    <div class="cat reveal reveal-delay-1">
+      <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&q=80" alt="Organization">
+      <div class="cat-overlay"></div>
+      <div class="cat-label">
+        <span class="cat-icon-sm">🗄️</span>
+        <div class="cat-name-lg">Home Organization</div>
+        <div class="cat-count">Storage & organizational solutions</div>
+      </div>
+    </div>
+    <div class="cat reveal reveal-delay-2">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Home">
+      <div class="cat-overlay"></div>
+      <div class="cat-label">
+        <span class="cat-icon-sm">🏠</span>
+        <div class="cat-name-lg">Home Essentials</div>
+        <div class="cat-count">Cleaning, laundry & personal care</div>
+      </div>
+    </div>
+    <div class="cat reveal">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Lifestyle">
+      <div class="cat-overlay"></div>
+      <div class="cat-label">
+        <span class="cat-icon-sm">🌿</span>
+        <div class="cat-name-lg">Lifestyle & Wellness</div>
+        <div class="cat-count">Candles, aromatherapy & wellness</div>
+      </div>
+    </div>
+    <div class="cat reveal reveal-delay-1">
+      <img src="https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?w=600&q=80" alt="Bath">
+      <div class="cat-overlay"></div>
+      <div class="cat-label">
+        <span class="cat-icon-sm">🛁</span>
+        <div class="cat-name-lg">Bedding & Bath</div>
+        <div class="cat-count">Sheets, towels & bath accessories</div>
+      </div>
+    </div>
+    <div class="cat reveal reveal-delay-2">
+      <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=600&q=80" alt="Seasonal">
+      <div class="cat-overlay"></div>
+      <div class="cat-label">
+        <span class="cat-icon-sm">🏷️</span>
+        <div class="cat-name-lg">Seasonal & Clearance</div>
+        <div class="cat-count">Top brands at competitive prices</div>
+      </div>
     </div>
   </div>
-  <div class="b2b-form-wrap">
-    <h3>Send Us a Partnership Inquiry</h3>
-    <form onsubmit="handleSubmit(event)">
-      <div class="form-row">
-        <div class="form-group"><input type="text" placeholder="First Name *" required></div>
-        <div class="form-group"><input type="text" placeholder="Last Name *" required></div>
+</section>
+
+<!-- B2B -->
+<section class="b2b" id="b2b">
+  <div class="b2b-grid">
+    <div class="b2b-content">
+      <div class="label-small reveal">Brand Partnerships</div>
+      <h2 class="title-serif reveal">Ready to Partner?</h2>
+      <p class="b2b-sub reveal">We welcome wholesale and brand partnership inquiries. Our purchasing team responds within 24 business hours.</p>
+      <div class="b2b-perks">
+        <div class="b2b-perk reveal"><div class="b2b-perk-dot">✓</div>Registered US LLC — Amazon policy compliant</div>
+        <div class="b2b-perk reveal reveal-delay-1"><div class="b2b-perk-dot">✓</div>MAP policy enforcement on all listings</div>
+        <div class="b2b-perk reveal reveal-delay-2"><div class="b2b-perk-dot">✓</div>We invest in PPC & promotions independently</div>
+        <div class="b2b-perk reveal reveal-delay-3"><div class="b2b-perk-dot">✓</div>Transparent reporting & long-term partnership</div>
+        <div class="b2b-perk reveal reveal-delay-4"><div class="b2b-perk-dot">✓</div>FBA-ready with established logistics</div>
+        <div class="b2b-perk reveal"><div class="b2b-perk-dot">✓</div>No cost to you — zero-risk partnership model</div>
       </div>
-      <div class="form-group"><input type="email" placeholder="Business Email *" required></div>
-      <div class="form-group"><input type="text" placeholder="Company / Brand Name *" required></div>
-      <div class="form-group">
-        <select>
-          <option value="" disabled selected>Product Category</option>
-          <option>Home & Kitchen</option>
-          <option>Health & Beauty</option>
-          <option>Sports & Outdoors</option>
-          <option>Pet Supplies</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="form-group"><textarea placeholder="Tell us about your brand..."></textarea></div>
-      <button type="submit" class="btn-dark" style="width:100%">Send Inquiry →</button>
-    </form>
+    </div>
+    <div class="b2b-form reveal">
+      <h3>Send a Partnership Inquiry</h3>
+      <p>Or email us directly at <a href="mailto:sales@gurviaglobal.com">sales@gurviaglobal.com</a></p>
+      <form onsubmit="handleSubmit(event)">
+        <div class="frow">
+          <div class="fgroup"><input type="text" placeholder="First Name *" required></div>
+          <div class="fgroup"><input type="text" placeholder="Last Name *" required></div>
+        </div>
+        <div class="fgroup"><input type="email" placeholder="Business Email *" required></div>
+        <div class="fgroup"><input type="text" placeholder="Company / Brand Name *" required></div>
+        <div class="fgroup">
+          <select>
+            <option value="" disabled selected>Product Category</option>
+            <option>Home & Kitchen</option>
+            <option>Health & Beauty</option>
+            <option>Sports & Outdoors</option>
+            <option>Pet Supplies</option>
+            <option>Lifestyle & Wellness</option>
+            <option>Bedding & Bath</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fgroup"><textarea placeholder="Tell us about your brand..."></textarea></div>
+        <button type="submit" class="btn-glow" style="width:100%;justify-content:center;border:none">Send Inquiry →</button>
+      </form>
+    </div>
   </div>
 </section>
 
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <div class="contact-grid">
+    <div class="contact-item">
+      <span class="contact-icon">✉️</span>
+      <h4>Email</h4>
+      <a href="mailto:sales@gurviaglobal.com">sales@gurviaglobal.com</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-icon">🌐</span>
+      <h4>Website</h4>
+      <a href="https://gurviaglobal.com">gurviaglobal.com</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-icon">📍</span>
+      <h4>Location</h4>
+      <p>Sheridan, Wyoming, USA</p>
+    </div>
+    <div class="contact-item">
+      <span class="contact-icon">📱</span>
+      <h4>Instagram</h4>
+      <a href="https://instagram.com/gurvia.global" target="_blank">@gurvia.global</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="#" class="nav-logo" style="color:white">Gurvía <span>Global</span></a>
-      <p>A US-based authorized Amazon seller specializing in Home & Kitchen and Lifestyle products.</p>
-      <p style="margin-top:12px;color:rgba(255,255,255,0.3);font-size:0.8rem">sales@gurviaglobal.com</p>
+      <a href="https://gurviaglobal.com" class="footer-logo">Gurvía <span>Global</span></a>
+      <p>A US-based authorized Amazon seller specializing in Home & Kitchen and Lifestyle products. Wholesale and brand partnerships welcome.</p>
     </div>
     <div class="footer-col">
       <h4>Shop</h4>
       <ul>
         <li><a href="#products">Cookware</a></li>
-        <li><a href="#products">Cutlery</a></li>
-        <li><a href="#products">Beverages</a></li>
-        <li><a href="#products">Home Essentials</a></li>
+        <li><a href="#categories">Home Organization</a></li>
+        <li><a href="#categories">Lifestyle & Wellness</a></li>
+        <li><a href="#categories">Bedding & Bath</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Company</h4>
       <ul>
-        <li><a href="#why-us">About Us</a></li>
+        <li><a href="#why">About Us</a></li>
         <li><a href="#b2b">B2B Sales</a></li>
         <li><a href="#b2b">Partner With Us</a></li>
+        <li><a href="https://instagram.com/gurvia.global" target="_blank">Instagram</a></li>
+        <li><a href="https://linkedin.com/company/gurviaglobal" target="_blank">LinkedIn</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
       <ul>
-        <li><a href="mailto:sales@gurviaglobal.com">Email Us</a></li>
-        <li><a href="#">Sheridan, WY</a></li>
-        <li><a href="#">United States</a></li>
+        <li><a href="mailto:sales@gurviaglobal.com">sales@gurviaglobal.com</a></li>
+        <li><a href="#b2b">Wholesale Inquiries</a></li>
+        <li><a href="https://distribution.gurviaglobal.com" target="_blank">Distribution Site</a></li>
+        <li><a href="#">Sheridan, WY, USA</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <p>© 2026 Gurvía Global LLC. All Rights Reserved.</p>
-    <p>Authorized Amazon Seller · US-Based Operations</p>
+    <p>Authorized Amazon Seller · US-Based Operations · Sheridan, Wyoming</p>
   </div>
 </footer>
 
 <script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const follower = document.getElementById('follower');
+let mouseX=0,mouseY=0,followerX=0,followerY=0;
+document.addEventListener('mousemove',e=>{
+  mouseX=e.clientX;mouseY=e.clientY;
+  cursor.style.left=mouseX+'px';cursor.style.top=mouseY+'px';
+});
+function animateFollower(){
+  followerX+=(mouseX-followerX)*0.12;
+  followerY+=(mouseY-followerY)*0.12;
+  follower.style.left=followerX+'px';follower.style.top=followerY+'px';
+  requestAnimationFrame(animateFollower);
+}
+animateFollower();
+
+// Navbar scroll
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{
+  navbar.classList.toggle('scrolled',window.scrollY>60);
+});
+
+// 3D tilt on product cards
+document.querySelectorAll('.prod').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const rect=card.getBoundingClientRect();
+    const x=(e.clientX-rect.left)/rect.width-0.5;
+    const y=(e.clientY-rect.top)/rect.height-0.5;
+    card.style.transform=`perspective(800px) rotateY(${x*12}deg) rotateX(${-y*12}deg) translateY(-8px) scale(1.02)`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='';
+  });
+});
+
+// Hero cards mouse parallax
+document.addEventListener('mousemove',e=>{
+  const cards=document.querySelectorAll('.hero-card-wrap');
+  const cx=window.innerWidth/2,cy=window.innerHeight/2;
+  const dx=(e.clientX-cx)/cx,dy=(e.clientY-cy)/cy;
+  cards.forEach((c,i)=>{
+    const depth=(i+1)*6;
+    c.style.transform=`translate(${dx*depth}px,${dy*depth}px)`;
+  });
+});
+
+// Scroll reveal
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}});
+},{threshold:0.1});
+reveals.forEach(r=>observer.observe(r));
+
+// Form submit
 function handleSubmit(e){
   e.preventDefault();
-  alert('Thank you! We will be in touch within 24 business hours.');
+  alert('Thank you! Our purchasing team will respond within 24 business hours.\n\nsales@gurviaglobal.com');
 }
 </script>
 </body>
